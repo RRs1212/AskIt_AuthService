@@ -38,6 +38,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'com.AskIt:EntityService:0.0.8-SNAPSHOT'
+	implementation 'io.jsonwebtoken:jjwt:0.12.6'
 }
 
 tasks.named('test') {

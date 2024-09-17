@@ -24,3 +24,6 @@ spring:
         enable_lazy_load_no_trans: true
 
 
+jwt:
+  secretKey : "secretKey@AskItRajasecretKey@AskItRajasecretKey@AskItRajasecretKey@AskItRajasecretKey@AskItRajasecretKey@AskItRaja"
+  expiry: 3600

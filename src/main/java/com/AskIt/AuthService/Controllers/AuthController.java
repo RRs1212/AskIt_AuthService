@@ -6,6 +6,7 @@ import com.AskIt.AuthService.Dtos.SignUpRequestDto;
 import com.AskIt.AuthService.Dtos.UserDto;
 import com.AskIt.AuthService.Repository.UserRepository;
 import com.AskIt.AuthService.Services.IAuthService;
+import com.AskIt.AuthService.Services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private IAuthService authService;
+
+    @Autowired
+    private JwtService jwtService;
 
     @Autowired
     private UserRepository userRepository;
@@ -54,7 +58,8 @@ public class AuthController {
         Authentication authenticate =authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         if(authenticate.isAuthenticated()){
             System.out.println("authenticated");
-            return new ResponseEntity<>("user loged in",HttpStatus.OK);
+            String toekn=jwtService.createToken(signInRequestDto.getEmail());
+            return new ResponseEntity<>(toekn,HttpStatus.OK);
         }else{
             System.out.println("Not yet");
             return new ResponseEntity<>("email or password is not correct",HttpStatus.NOT_FOUND);
